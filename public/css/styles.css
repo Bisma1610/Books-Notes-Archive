@@ -1,0 +1,165 @@
+/* style.css - Shared CSS for Book Notes App */
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+  background-color: #f4f7fa;
+  color: #333;
+}
+
+h1, h2, h3 {
+  color: #2c3e50;
+}
+
+a {
+  color: #2980b9;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+form {
+  margin-top: 15px;
+}
+
+label {
+  display: block;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+textarea {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+textarea {
+  height: 100px;
+  resize: vertical;
+  white-space: pre-wrap;
+}
+
+button {
+  margin-top: 15px;
+  padding: 10px 20px;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #2980b9;
+}
+
+/* Specific classes for layout */
+
+.book {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  background-color: #ffffff;
+  min-height: 130px;
+}
+
+.book img {
+  margin-right: 15px;
+  height: 120px;
+}
+
+.book .content {
+  flex: 1;
+  padding-right: 100px; /* space for edit button */
+}
+
+.edit-button,
+.logout-button,
+.dashboard-link,
+.search-link {
+  display: inline-block;
+  padding: 6px 12px;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  margin-right: 10px;
+}
+
+.edit-button:hover,
+.logout-button:hover,
+.dashboard-link:hover,
+.search-link:hover {
+  background-color: #0056b3;
+}
+
+.edit-button {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  padding: 6px 12px;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.results {
+  margin-top: 20px;
+}
+
+.result-item {
+  padding: 10px;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+  cursor: pointer;
+  border-radius: 4px;
+  background-color: #fff;
+}
+
+.result-item:hover {
+  background-color: #eaf2f8;
+}
+
+.logout-button {
+  background-color: #e74c3c;
+}
+
+.logout-button:hover {
+  background-color: #c0392b;
+}
+
+/* Dashboard styles */
+.dashboard-link {
+  background-color: #2ecc71;
+}
+
+.dashboard-link:hover {
+  background-color: #27ae60;
+}
+
+.search-link {
+  background-color: hsl(37, 90%, 51%);
+}
+
+.search-link:hover {
+  background-color: #e67e22;
+}

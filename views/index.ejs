@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Book Notes Archive</title>
+  <link rel="stylesheet" href="/css/styles.css">
+
+</head>
+<body>
+  <h1>Book Notes Archive</h1>
+
+  <form action="/import-books" method="get">
+    <input type="text" name="q" placeholder="Search books..." />
+    <button type="submit">Import Books</button>
+  </form>
+
+  <hr>
+
+  <% if (books && books.length > 0) { %>
+    <% books.forEach(book => { %>
+      <div class="book">
+        <% if (book.thumbnail) { %>
+          <img src="<%= book.thumbnail %>" alt="Thumbnail">
+        <% } %>
+        <div>
+          <h3><%= book.title %></h3>
+          <p><strong>Author(s):</strong> <%= book.authors %></p>
+          <p><%= book.description %></p>
+        </div>
+      </div>
+    <% }) %>
+  <% } else { %>
+    <p>No books available.</p>
+  <% } %>
+</body>
+</html>

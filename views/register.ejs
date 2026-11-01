@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="/css/tailwind.css">
+    <link rel="stylesheet" href="/css/styles.css"> <!-- Your custom styles -->
+  </head>
+  <body class="bg-[#101510] h-screen flex items-center justify-center"> <!-- Darker background -->
+
+    <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
+      <h1 class="text-3xl font-semibold text-center text-[#255F38] mb-6">Register</h1> <!-- Lighter green title -->
+
+      <form action="/register" method="POST" class="space-y-4">
+        <div>
+          <label for="username" class="block text-[#1F7D53] font-medium">Username:</label> <!-- Teal green label -->
+          <input type="text" name="username" id="username" required
+            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#255F38] focus:border-[#255F38]">
+        </div>
+
+        <div>
+          <label for="email" class="block text-[#1F7D53] font-medium">Email:</label> <!-- Teal green label -->
+          <input type="email" name="email" id="email" required
+            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#255F38] focus:border-[#255F38]">
+        </div>
+
+        <div>
+          <label for="password" class="block text-[#1F7D53] font-medium">Password:</label> <!-- Teal green label -->
+          <input type="password" name="password" id="password" required
+            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#255F38] focus:border-[#255F38]">
+        </div>
+
+        <button type="submit" class="w-full py-2 px-4 bg-[#255F38] text-white font-semibold rounded-md hover:bg-[#1F7D53] focus:outline-none focus:ring-2 focus:ring-[#255F38]">
+          Register
+        </button>
+      </form>
+
+      <p class="mt-4 text-center text-[#1F7D53]">Already have an account? 
+        <a href="/login" class="text-[#255F38] hover:text-[#1F7D53] font-semibold">Login here</a>
+      </p>
+    </div>
+
+  </body>
+</html>

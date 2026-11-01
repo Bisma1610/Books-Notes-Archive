@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Book Notes Archive - Home</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/css/tailwind.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+
+    <script>
+      // Debounce utility function
+      function debounce(func, delay) {
+        let timeoutId;
+        return function (...args) {
+          clearTimeout(timeoutId);
+          timeoutId = setTimeout(() => func.apply(this, args), delay);
+        };
+      }
+
+      async function searchBooks() {
+        const query = document.getElementById("searchBox").value;
+        const dropdown = document.getElementById("results");
+
+        if (!query.trim()) {
+          dropdown.classList.add("hidden"); // Hide dropdown if search box is empty
+          dropdown.innerHTML = "";
+          return;
+        }
+
+        const res = await fetch(`/search-books?q=${encodeURIComponent(query)}`);
+        const books = await res.json();
+
+        dropdown.classList.remove("hidden"); // Show dropdown when search is performed
+        dropdown.innerHTML = ""; // Clear previous search results
+
+        books.forEach((book) => {
+          const item = document.createElement("div");
+          item.className =
+            "animate__animated animate__fadeInDown result-item p-3 cursor-pointer hover:bg-[#255F38] hover:text-white text-[#18230F]";
+          item.innerHTML = `<strong>${book.title}</strong><br>${book.authors}`;
+          item.onclick = () => {
+            window.location.href = `/book/${book.id}`;
+          };
+          dropdown.appendChild(item);
+        });
+      }
+
+      // Replace direct binding with debounced version
+      const debouncedSearch = debounce(searchBooks, 600);
+    </script>
+  </head>
+  <body
+    class="bg-[#101510] text-white flex flex-col items-center justify-center py-10"
+  >
+    <h1 class="text-3xl font-semibold text-[#255F38] mb-6">Search for Books</h1>
+
+    <!-- Search Box -->
+    <input
+      type="text"
+      id="searchBox"
+      placeholder="Search books..."
+      oninput="debouncedSearch()"
+      autocomplete="off"
+      class="w-80 px-4 py-2 rounded-md border-2 max-w-md border-[#27391C] bg-[#27391C] text-white focus:outline-none focus:ring-2 focus:ring-[#1F7D53] mb-6"
+    />
+
+    <!-- Dropdown Results (Initially Hidden) -->
+    <div
+      id="results"
+      class="w-80 max-h-60 overflow-y-auto border-2 border-[#27391C] rounded-md bg-[#101510] p-2 hidden"
+    ></div>
+
+    <div class="mt-6 flex space-x-6">
+      <a
+        href="/dashboard"
+        class="text-[#1F7D53] hover:text-[#255F38] font-semibold"
+        >Go to Dashboard</a
+      >
+      <a
+        href="/logout"
+        class="text-[#1F7D53] hover:text-[#255F38] font-semibold"
+        >Logout</a
+      >
+    </div>
+  </body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Edit Review - <%= book.title %></title>
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/css/tailwind.css" />
+  </head>
+  <body class="bg-[#101510] text-white min-h-screen px-6 py-8">
+    <div class="max-w-4xl mx-auto">
+      <h1 class="text-3xl font-bold mb-4 text-[#1F7D53]">Edit Review for "<%= book.title %>"</h1><hr class="mb-4">
+
+      <div class="bg-[#27391C] p-4 rounded-lg shadow-lg mb-6 flex flex-col md:flex-row gap-4">
+        <% if (book.thumbnail) { %>
+        <img
+          src="<%= book.thumbnail %>"
+          alt="Thumbnail"
+          class="max-w-[120px] max-h-[180px] object-contain rounded shadow-md"
+        />
+        <% } %>
+
+        <div class="flex-1">
+          <p class="text-sm mb-1">
+            <span class="text-[#1F7D53] font-semibold">Author(s):</span> <%= book.author %>
+          </p>
+        </div>
+      </div>
+
+      <form action="/editbook" method="POST" class="bg-[#27391C] p-6 rounded-lg shadow-lg">
+        <input type="hidden" name="bookId" value="<%= book.book_id %>">
+
+        <div class="mb-4">
+          <label for="note" class="block text-lg font-semibold text-[#1F7D53]">Your Note:</label>
+          <textarea name="note" required class="w-full p-3 mt-2 bg-[#18230F] border-2 border-[#1F7D53] rounded text-white" rows="4"><%= book.note %></textarea>
+        </div>
+
+        <div class="mb-4">
+          <label for="rating" class="block text-lg font-semibold text-[#1F7D53]">Your Rating (1 to 5):</label>
+          <input type="number" name="rating" min="1" max="5" step="0.1" value="<%= book.rating %>" required class="w-full p-3 mt-2 bg-[#18230F] border-2 border-[#1F7D53] rounded text-white">
+        </div>
+
+        <button type="submit" class="w-full py-3 mt-4 bg-[#1F7D53] text-white font-semibold rounded hover:bg-[#176345] transition">Update Review</button>
+      </form>
+
+      <div class="mt-6">
+        <a href="/dashboard" class="text-[#1F7D53] hover:underline">← Back to Dashboard</a>
+      </div>
+    </div>
+  </body>
+</html>

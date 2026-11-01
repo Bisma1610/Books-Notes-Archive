@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= book.title %> - Book Notes</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/css/tailwind.css">
+</head>
+<body class="bg-[#101510] text-white min-h-screen flex flex-col items-center px-4 py-10">
+
+  <h1 class="text-3xl font-bold text-[#1F7D53] mb-6 text-center"><%= book.title %></h1>
+
+  <div class="flex flex-col md:flex-row gap-6 bg-[#18230F] p-6 rounded-lg shadow-lg w-full max-w-4xl">
+    <% if (book.thumbnail) { %>
+     <img src="<%= book.thumbnail %>" alt="Thumbnail" class="max-w-full max-h-[300px] rounded shadow-md object-contain">
+    <% } %>
+
+    <div>
+      <p class="mb-2"><strong>Authors:</strong> <%= book.authors %></p>
+      <p class="text-[#D1D5DB] text-sm leading-relaxed"><%= book.description %></p>
+    </div>
+  </div>
+
+  <form action="/submit-review" method="POST" class="bg-[#18230F] p-6 mt-8 w-full max-w-2xl rounded-lg shadow-md space-y-4">
+    <input type="hidden" name="bookId" value="<%= book.id %>">
+    <input type="hidden" name="title" value="<%= book.title %>">
+    <input type="hidden" name="authors" value="<%= book.authors %>">
+    <input type="hidden" name="thumbnail" value="<%= book.thumbnail %>">
+
+    <div>
+      <label for="note" class="block mb-1 font-medium text-[#D1D5DB]">Your Note:</label>
+      <textarea name="note" required class="w-full p-3 rounded border border-[#27391C] bg-[#27391C] text-white resize-y focus:outline-none focus:ring-2 focus:ring-[#1F7D53] min-h-[100px]"></textarea>
+    </div>
+
+    <div>
+      <label for="rating" class="block mb-1 font-medium text-[#D1D5DB]">Your Rating (1 to 5):</label>
+      <input type="number" name="rating" min="1" max="5" step="0.1" required
+        class="w-24 p-2 rounded border border-[#27391C] bg-[#27391C] text-white focus:outline-none focus:ring-2 focus:ring-[#1F7D53]">
+    </div>
+
+    <button type="submit"
+      class="bg-[#1F7D53] text-white px-5 py-2 rounded hover:bg-[#255F38] transition">Submit</button>
+  </form>
+
+  <a href="/" class="mt-6 text-[#1F7D53] hover:text-[#255F38]">&larr; Back to Search</a>
+
+</body>
+</html>
